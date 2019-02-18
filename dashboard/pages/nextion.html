@@ -17,12 +17,20 @@
                             	<div class="input-group mb-3">
                                 	<div class="custom-file">
     							    	<input type="file" class="custom-file-input" id="customFile" accept=".tft">
-    							    	<!-- <label class="custom-file-label" for="customFile">file</label> -->
+    							    	<label class="custom-file-label" for="customFile">file</label>
   							    	</div>
                                 	<div class="input-group-append">
                                     	<button class="btn btn-primary">Upload</button>
                                 	</div>
 						    	</div>
+								<script>
+            						$('#customFile').on('change',function(){
+                						//get the file name
+                						var fileName = $(this).val();
+                						//replace the "Choose a file" label
+                						$(this).next('.custom-file-label').html(fileName);
+            						})
+        						</script>
                         	</form>
 							<div class="input-default-wrapper mt-12">
 								<div class="progress">
