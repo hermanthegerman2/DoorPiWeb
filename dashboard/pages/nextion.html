@@ -25,10 +25,15 @@
                                 	</div>
 						    	</div>
 								<script>
-            						$('input[type="file"]').change(function(e){
-        								var fileName = e.target.files[0].name;
-        								$('.custom-file-label').html(fileName);
-    								});
+            					$(function() {
+  									$(document).on('change', ':file', function() {var input = $(this), numFiles = input.get(0).files ? input.get(0).files.length : 1,
+        								label = input.val().replace(/\\/g, '/').replace(/.*\//, '');input.trigger('fileselect', [numFiles, label]);
+  									});
+  									$(document).ready( function() {
+      									$(':file').on('fileselect', function(event, numFiles, label) {var input = $(this).parents('.custom-file').find('.custom-file-label'),
+      									log = numFiles > 1 ? numFiles + ' files selected' : label;if( input.length ) {input.text(log);} else {if( log ) alert(log);}});
+  									});
+								});
         						</script>
                         	</form>
 							<div class="input-default-wrapper mt-12">
